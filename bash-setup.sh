@@ -1,18 +1,18 @@
 #!/bin/bash
 
-set -e
+#set -e
 
 # bootstrap a new system account with useful stuff
 
 
 GIT_DIR="${HOME}/git"
 BOOTSTRAP_DIR="${GIT_DIR}/bootstrap"
+SCRIPT_DIR="${GIT_DIR}/scripts"
 
 
 # make sure custom bashrc is sourced
 grep CUSTOM_BASHRC ~/.bashrc >/dev/null
 HAS_CUSTOM_BASHRC=$?
-echo ${HAS_CUSTOM_BASHRC}
 
 if [[ 1 -eq HAS_CUSTOM_BASHRC ]]; then
 cat << 'EOF' >> ~/.bashrc
@@ -21,12 +21,23 @@ if [ -f ${CUSTOM_BASHRC} ]; then
   . ${CUSTOM_BASHRC}
 fi
 EOF
+else
+  exit 1
+fi
+
+
+# install vim plugin manager vim-plug
+if [ ! -d ~/.vim/autoload ]; then
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 
 # get repo and install dotfiles
 mkdir -p "${GIT_DIR}"
 cd "${GIT_DIR}"
 git clone https://github.com/chefkoch666/bootstrap.git
+cd "${BOOTSTRAP_DIR}"
 
 
 install_from_template() {
@@ -47,3 +58,9 @@ install_from_template vimrc
 install_from_template screenrc
 #install_from_template gitconfig 
 #install_from_template gitignore
+
+
+# run scripts
+for script in $(ls -1 ${SCRIPT_DIR}); do
+  bash ${script}
+done
