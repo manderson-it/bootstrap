@@ -1,0 +1,52 @@
+# File: $HOME/.bashrc_custom
+# THIS FILE IS A USER-CUSTOM BASHRC FILE TO KEEP CLEAN THE DEFAULT ~/.barshrc FILE.
+# PUT THERE ANY CUSTOM CODE MANUALLY ADDED BY YOU
+
+# erasedups: erase duplicate commands from history
+HISTCONTROL=ignoredups:erasedups
+HISTIGNORE="ls:ll:ps:history:exit:rm:pwd:date:ls *:man *:"
+shopt -s histappend
+
+# synchronize history with all terminals
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
+# Add a new line at the end of the command prompt
+PS1=${PS1%?}
+PS1=${PS1%?}\n'$ '
+
+# Use a private mock hosts(5) file for completion
+HOSTFILE=$HOME/.hosts
+# You can even include other files from your custom HOSTFILE with an $include directive!
+#$include /home/tom/.hosts.home
+#$include /home/tom/.hosts.work
+complete -A hostname -o default curl dig host netcat ping telnet
+complete -A variable	export local readonly unset
+complete -A enabled 	builtin
+complete -A alias	alias unalias
+
+# If set, minor errors in the spelling of a directory component in a cd command will be corrected. The errors checked for are transposed characters, a missing character, and a character too many.
+# If a correction is found, the corrected path is printed, and the command proceeds.
+# This option is only used by interactive shells.
+shopt -s cdspell
+
+#If set, Bash attempts spelling correction on directory names during word completion
+# if the directory name initially supplied does not exist.
+shopt -s dirspell
+
+# You can tell bash/completion to NOT try completion for an empty entry
+shopt -s no_empty_cmd_completion
+
+# If this is set, an argument to the cd builtin command that is not a directory
+# is assumed to be the name of a variable whose value is the directory to change to.
+#shopt -s cdable_vars
+
+# less
+alias more='less'
+export PAGER=less
+#export LESSCHARSET='latin1'
+export LESSCHARSET='utf-8'
+#export LESS='-i -w -z-4 -g -e -M -X -F -R -P%t?f%f \ :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
+export LESS='-i -w -z-4 -g -e -M -X -F -R -P%t?f%f \ :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
+
+export EDITOR=vim
+alias top='xtitle Processes on $HOSTNAME && top'

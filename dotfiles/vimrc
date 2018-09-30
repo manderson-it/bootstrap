@@ -1,0 +1,58 @@
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'ap/vim-buftabline'
+
+Plug 'Glench/Vim-Jinja2-Syntax'
+
+" Automatically clears search highlight
+Plug 'pgdouyon/vim-evanesco'
+
+" Low-contrast Vim color scheme based on Seoul Colors
+Plug 'junegunn/seoul256.vim'
+
+" This is vim script support expanding abbreviation like emmet.
+" ref: http://emmet.io/
+" Emmet is a plugin for many popular text editors which greatly improves HTML
+" & CSS workflow
+Plug 'mattn/emmet-vim'
+
+" Add additional support for Ansible in VIM
+Plug 'chase/vim-ansible-yaml'
+
+" A light and configurable statusline/tabline plugin for Vim
+Plug 'itchyny/lightline.vim'
+
+" Initialize plugin system
+call plug#end()
+
+
+"syntax off
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+set showmatch                   " automatically show matching brackets. works like it does in bbedit.
+set ruler                       " show the cursor position all the time
+set backspace=indent,eol,start  " make that backspace key work the way it should
+"set cursorline			" highlight line under cursor
+"set autowrite		" Automatically save before commands like :next and :make
+set hidden		" Any buffer can be hidden (keeping its changes) without first writing the buffer to a file
+set wildmenu			" :help wildmenu command-line completion operates in an enhanced mode.
+set wildmode=longest:list,full	" formatting of wildmenu
+colorscheme seoul256
+set background=dark
+
+" Show EOL type and last modified timestamp, right after the filename
+"set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
+"set laststatus=2                " make the last line where the status is two lines deep so you can see status always
+
+" move among buffers with CTRL N(ext) or P(revious)
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>

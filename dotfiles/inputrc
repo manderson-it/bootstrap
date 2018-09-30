@@ -1,0 +1,21 @@
+### START Lazier Tab completion
+# If you don’t like pressing Tab twice, you can fix this with a line
+# in .inputrc so that the line is both completed to the
+# longest unambiguous pattern, and then possible values are also printed:
+set show-all-if-ambiguous on
+
+# If you commonly Tab your way through long paths that sometimes include mixed-case names, you can make Readline handle that for you by making the completion case-insensitive, with the following in your .inputrc:
+set completion-ignore-case on
+
+# You can supplement this to make the completion apply similar insensitivity between hyphens and underscores:
+set completion-map-case on
+
+# If you’re on a fast terminal and you’re not bothered by having the screeds of texts it can sometimes generate being spat at you, you can turn off the sometimes annoying prompt that checks with you whether you want to show more than a hundred results for possible completion, with the following in .inputrc:
+set completion-query-items -1
+
+# If you do this, you should probably set Readline’s built-in pager to be off, otherwise it’ll attempt to walk you through the possible completions page-by-page:
+set page-completions off
+
+#If you do happen to deal with directories with more than a thousand files in them now and then (which doesn’t tend to happen much in routine system administration), it might be a bit safer to set it to some number much higher than the default of 100:
+set completion-query-items 1000
+### END Lazier Tab completion
