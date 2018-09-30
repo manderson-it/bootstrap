@@ -60,6 +60,7 @@ install_from_template screenrc
 #install_from_template gitignore
 
 
+cd "${SCRIPT_DIR}"
 # run scripts
 for script in $(ls -1 ${SCRIPT_DIR}); do
   bash ${script}
