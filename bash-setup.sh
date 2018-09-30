@@ -7,7 +7,7 @@
 
 GIT_DIR="${HOME}/git"
 BOOTSTRAP_DIR="${GIT_DIR}/bootstrap"
-SCRIPT_DIR="${GIT_DIR}/scripts"
+SCRIPT_DIR="${BOOTSTRAP_DIR}/scripts"
 
 
 # make sure custom bashrc is sourced
@@ -64,3 +64,6 @@ install_from_template screenrc
 for script in $(ls -1 ${SCRIPT_DIR}); do
   bash ${script}
 done
+
+
+vim +PlugInstall

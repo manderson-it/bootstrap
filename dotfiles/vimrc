@@ -50,7 +50,9 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 set hidden		" Any buffer can be hidden (keeping its changes) without first writing the buffer to a file
 set wildmenu			" :help wildmenu command-line completion operates in an enhanced mode.
 set wildmode=longest:list,full	" formatting of wildmenu
-colorscheme seoul256
+if has("seoul256")
+  colorscheme seoul256
+endif
 set background=dark
 
 " Show EOL type and last modified timestamp, right after the filename
