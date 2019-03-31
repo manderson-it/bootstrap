@@ -36,7 +36,7 @@ fi
 # get repo and install dotfiles
 mkdir -p "${GIT_DIR}"
 cd "${GIT_DIR}"
-git clone https://github.com/chefkoch666/bootstrap.git
+git clone https://github.com/manderson-it/bootstrap.git
 cd "${BOOTSTRAP_DIR}"
 
 
