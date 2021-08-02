@@ -22,7 +22,7 @@ if [ -f ${CUSTOM_BASHRC} ]; then
 fi
 EOF
 else
-  exit 1
+  echo ".bashrc does not exist. Continuing."
 fi
 
 
