@@ -31,6 +31,12 @@ Plug 'itchyny/lightline.vim'
 " vim match-up: even better % navigate and highlight matching words modern matchit and matchparen replacement
 Plug 'andymass/vim-matchup'
 
+" Go development plugin for \im https://github.com/fatih/vim-go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" toggle comments
+Plug 'tpope/vim-commentary'
+
 " Initialize plugin system
 call plug#end()
 
@@ -54,6 +60,7 @@ if has("seoul256")
   colorscheme seoul256
 endif
 set background=dark
+set mouse=a   " enable mouse scrolling
 
 " Show EOL type and last modified timestamp, right after the filename
 "set statusline=%<%F%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
@@ -62,3 +69,14 @@ set background=dark
 " move among buffers with CTRL N(ext) or P(revious)
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
+
+" vim-go
+" autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <C-X>  <Plug>(go-run)
+
+" vim-commentary
+" [CTRL]+[LSHIFT]+[_] works for line and visual block comments
+noremap <C-_> :Commentary<cr>
+" My favorite file type isn't supported!
+" Relax! You just have to adjust commentstring
+" autocmd FileType apache setlocal commentstring=#\ %s
