@@ -1,3 +1,10 @@
+" Install vim-plug if not installed already
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -15,6 +22,9 @@ Plug 'pgdouyon/vim-evanesco'
 
 " Low-contrast Vim color scheme based on Seoul Colors
 Plug 'junegunn/seoul256.vim'
+
+" Colorscheme Retro groove color scheme for Vim
+Plug 'morhetz/gruvbox'
 
 " This is vim script support expanding abbreviation like emmet.
 " ref: http://emmet.io/
@@ -56,9 +66,8 @@ set backspace=indent,eol,start  " make that backspace key work the way it should
 set hidden		" Any buffer can be hidden (keeping its changes) without first writing the buffer to a file
 set wildmenu			" :help wildmenu command-line completion operates in an enhanced mode.
 set wildmode=longest:list,full	" formatting of wildmenu
-if has("seoul256")
-  colorscheme seoul256
-endif
+" silent! colorscheme seoul256 " set colorscheme if exists
+silent! colorscheme gruvbox  " set colorscheme if exists
 set background=dark
 set mouse=a   " enable mouse scrolling
 
